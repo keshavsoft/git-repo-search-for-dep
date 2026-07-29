@@ -1,0 +1,11 @@
+{
+  "packageToFind": {
+    "owner": "keshavsoft",
+    "name": "pattern-collector-base-regex-n-parts",
+    "branch": "main"
+  },
+  "paths": {
+    "packageToFindFolder": "PackageToFind",
+    "matchedRepositoriesFolder": "MatchedRepositories"
+  }
+}
