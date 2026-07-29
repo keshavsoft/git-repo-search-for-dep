@@ -18,7 +18,9 @@ export async function inspectRepositoryForPackage({ repository, packageToFind, r
     }
 
     return {
+        owner: repository.owner,
         repo: repository.repo,
+        branch: repository.branch,
         version
     };
 }

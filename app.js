@@ -4,6 +4,7 @@ import { readPackageJsonFromGithub } from "./SearchStory/GithubTrail/readPackage
 import { prepareRepositoryInspector } from "./SearchStory/DependencyClues/prepareRepositoryInspector.js";
 import { findRepositoriesUsingPackage } from "./SearchStory/SearchJourney/findRepositoriesUsingPackage.js";
 import { printSearchMatches } from "./SearchStory/FinalScene/printSearchMatches.js";
+import { cloneMatchedRepositories } from "./SearchStory/CloneChapter/cloneMatchedRepositories.js";
 
 const inspectRepository = prepareRepositoryInspector({
     packageToFind,
@@ -16,3 +17,5 @@ const matches = await findRepositoriesUsingPackage({
 });
 
 printSearchMatches(matches);
+
+await cloneMatchedRepositories({ matches });
