@@ -18,13 +18,17 @@ async function pathExists(targetPath) {
 
 function runGitClone({ repository, destination }) {
     return new Promise((resolve, reject) => {
-        const git = spawn("git", [
+        const args = [
             "clone",
-            "--branch",
-            repository.branch,
             repositoryUrl(repository),
             destination
-        ], {
+        ];
+
+        if (repository.branch) {
+            args.splice(1, 0, "--branch", repository.branch);
+        }
+
+        const git = spawn("git", args, {
             stdio: "inherit"
         });
 
@@ -40,6 +44,26 @@ function runGitClone({ repository, destination }) {
     });
 }
 
+export async function cloneRepository({
+    repository,
+    destinationRoot
+}) {
+    await mkdir(destinationRoot, { recursive: true });
+
+    const destination = path.join(destinationRoot, repository.repo);
+
+    if (await pathExists(destination)) {
+        console.log(`Already cloned ${repository.repo} at ${destination}`);
+        return;
+    }
+
+    console.log(`Cloning ${repository.repo} to ${destination}`);
+    await runGitClone({
+        repository,
+        destination
+    });
+}
+
 export async function cloneMatchedRepositories({
     matches,
     destinationRoot = "MatchedRepositories"
@@ -47,17 +71,9 @@ export async function cloneMatchedRepositories({
     await mkdir(destinationRoot, { recursive: true });
 
     for (const match of matches) {
-        const destination = path.join(destinationRoot, match.repo);
-
-        if (await pathExists(destination)) {
-            console.log(`Already cloned ${match.repo} at ${destination}`);
-            continue;
-        }
-
-        console.log(`Cloning ${match.repo} to ${destination}`);
-        await runGitClone({
+        await cloneRepository({
             repository: match,
-            destination
+            destinationRoot
         });
     }
 }
