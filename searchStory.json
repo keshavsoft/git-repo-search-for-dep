@@ -1,11 +1,7 @@
 {
   "packageToFind": {
     "owner": "keshavsoft",
-    "name": "pattern-collector-base-regex-n-parts",
+    "name": "pattern-collector-anyjs-pull-lines",
     "branch": "main"
-  },
-  "paths": {
-    "packageToFindFolder": "PackageToFind",
-    "matchedRepositoriesFolder": "MatchedRepositories"
   }
 }
