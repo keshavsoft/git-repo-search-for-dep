@@ -1,9 +1,9 @@
-import { packageToFind } from "./SearchStory/packageToFind.js";
-import { repositoriesToCheck } from "./SearchStory/repositoriesToCheck.js";
-import { readPackageJsonFromGithub } from "./SearchStory/readPackageJsonFromGithub.js";
-import { prepareRepositoryInspector } from "./SearchStory/prepareRepositoryInspector.js";
-import { findRepositoriesUsingPackage } from "./SearchStory/findRepositoriesUsingPackage.js";
-import { printSearchMatches } from "./SearchStory/printSearchMatches.js";
+import { packageToFind } from "./SearchStory/StoryInputs/packageToFind.js";
+import { repositoriesToCheck } from "./SearchStory/StoryInputs/repositoriesToCheck.js";
+import { readPackageJsonFromGithub } from "./SearchStory/GithubTrail/readPackageJsonFromGithub.js";
+import { prepareRepositoryInspector } from "./SearchStory/DependencyClues/prepareRepositoryInspector.js";
+import { findRepositoriesUsingPackage } from "./SearchStory/SearchJourney/findRepositoriesUsingPackage.js";
+import { printSearchMatches } from "./SearchStory/FinalScene/printSearchMatches.js";
 
 const inspectRepository = prepareRepositoryInspector({
     packageToFind,
